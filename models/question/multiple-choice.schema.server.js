@@ -1,5 +1,5 @@
 const mongoose = require('mongoose')
 module.exports = mongoose.Schema({
-	choices: String,
+	choices: Array,
 	correct: Number
 })

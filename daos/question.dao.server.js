@@ -1,38 +1,34 @@
-var questions = require("../data/questions.json")
-
+// var questions = require("../data/questions.json")
+var questionModel = require("../models/question/question.model.server")
 
 function createQuestion(newQuesiton) {
-    const data = questions.find(quesiton => quesiton._id == newQuesiton._id)
-    if (data == undefined) {
-        questions.push(newQuesiton);
-        return questions
-    }
-    return null;
+    // const data = questions.find(quesiton => quesiton._id == newQuesiton._id)
+    // if (data == undefined) {
+    //     questions.push(newQuesiton);
+    //     return questions
+    // }
+    // return null;
+    return questionModel.create(newQuesiton);
 
 }
 
 function findAllQuestions() {
-    return questions;
+    return questionModel.find();
 }
 
 function findQuestionById(qid) {
-    return questions.find(question => question._id == qid)
+    return questionModel.findById(qid)
 }
 
 
 function updateQuestion(qid, updateQuesiton) {
-    for (var i = 0; i < questions.length; i++) {
-        if (questions[i]._id == qid) {
-            questions[i] = updateQuesiton;
-        }
-    }
-    return questions;
+    return questionModel.update({_id: qid}, {
+        $set: updateQuesiton // fields existed will be updated, if not keep the same
+    })
 }
 
 function deleteQuestion(qid) {
-    var index = questions.findIndex(question => question._id == qid);
-    questions.splice(index, 1);
-    return questions
+    return questionModel.deleteOne({_id: qid})
 }
 
 

@@ -8,39 +8,38 @@ module.exports = function (app) {
 
     function createQuestion(req, res) {
         const question = req.body;
-		var data = questionsDao.createQuestion(question)
-		if (data === null){
-			res.status(409);
-			res.send('the question already exists')
-		}else{
-			res.json(data);
-		}
+        questionsDao.createQuestion(question)
+            .then(response => res.send(response))
+
     }
 
     function findAllQuestions(req, res) {
-        res.json(questionsDao.findAllQuestions());
+        questionsDao.findAllQuestions()
+            .then(response => res.send(response));
     }
 
     function findQuestionById(req, res) {
-        res.json(
-            questionsDao.findQuestionById(req.params['qid'])
-        )
+       var pid = req.params['qid']
+        questionsDao.findQuestionById(pid)
+            .then(response => res.send(response))
     }
 
     function updateQuestion(req, res) {
         var questionId = req.params['qid'];
         var questionUpdates = req.body
-        res.json(questionsDao.updateQuestion(questionId, questionUpdates))
+        questionsDao.updateQuestion(questionId, questionUpdates)
+            .then(response => res.send(response))
     }
 
     function deleteQuestion(req, res) {
         var questionId = req.params['qid'];
-        res.json(questionsDao.deleteQuestion(questionId))
+        questionsDao.deleteQuestion(questionId)
+            .then(response => res.send(response))
     }
 
     app.post('/api/question', createQuestion)
     app.get('/api/question', findAllQuestions)
-    app.get('api/question/:qid', findQuestionById)
-    app.put('api/question/:qid', updateQuestion)
-    app.delete('api/question/:qid', deleteQuestion)
+    app.get('/api/question/:qid', findQuestionById)
+    app.put('/api/question/:qid', updateQuestion)
+    app.delete('/api/question/:qid', deleteQuestion)
 }

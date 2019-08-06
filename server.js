@@ -27,14 +27,6 @@ app.use(function(req, res, next) {
    next();
 });
 
-// var bookSchema = mongoose.Schema({
-//    _id:String,
-//    title:String,
-// },{collection: 'book'})
-//
-// var bookModel = mongoose.model('BookModel',bookSchema )
-//
-// bookModel.find().then(res => console.log(res))
 
 var studentService = require('./services/student.service.server.js')(app);
 const questionService = require('./services/question.service.server.js')(app);

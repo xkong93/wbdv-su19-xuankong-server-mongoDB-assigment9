@@ -18,7 +18,7 @@ function findStudentById(studentId) {
 }
 
 function findStudentByUsername(username) {
-    return studentModel.findOne({firstname: username})
+    return studentModel.findOne({username: username})
 
 }
 
@@ -29,7 +29,7 @@ function updateStudent(studentId, studentUpdates) {
 }
 
 function deleteStudent(studentId) {
-    return studentModel.delete({_id:studentId})
+    return studentModel.deleteOne({_id:studentId})
 
 }
 
