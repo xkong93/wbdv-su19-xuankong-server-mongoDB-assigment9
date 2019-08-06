@@ -1,8 +1,8 @@
 // var students = require('../data/students.json');
-var studentModel = require('../models/student.model.server');
+var studentModel = require('../models/student/student.model.server');
 
 function createStudent(newStudent) {
-	return studentModel.create(newStudent )
+    return studentModel.create(newStudent)
 }
 
 function findAllStudents() {
@@ -14,29 +14,22 @@ function findAllStudents() {
 function findStudentById(studentId) {
     // studentModel.find({_id: userId})
     // equivalent select * from students where _id=studentId
-    // return studentModel.find({_id: studentId})
-    return students.find(student => student._id == studentId)
+    return studentModel.findById(studentId)//syntactic sugar
 }
 
 function findStudentByUsername(username) {
-    // return studentModel.find({username: username})
-    return students.find(student => student.username == username)
+    return studentModel.findOne({firstname: username})
 
 }
 
 function updateStudent(studentId, studentUpdates) {
-    for (var i = 0; i < students.length; i++) {
-        if (students[i]._id === studentId) {
-            students[i] = studentUpdates;
-        }
-    }
-    return students;
+   return studentModel.update({_id:studentId},{
+       $set: studentUpdates // fields existed will be updated, if not keep the same
+   })
 }
 
 function deleteStudent(studentId) {
-    var index = students.findIndex(student => student._id == studentId)
-    students.splice(index, 1);
-    return students
+    return studentModel.delete({_id:studentId})
 
 }
 

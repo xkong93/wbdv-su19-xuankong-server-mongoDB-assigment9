@@ -1,12 +1,13 @@
 var express = require('express')
 var app = express()
-var mongoose = require('mongoose')
 
-var username = process.env.MY_MONGODB_USERNAME;
-var password = process.env.MY_MONGODB_PASSWORD;
-
+// var username = process.env.MY_MONGODB_USERNAME;
+// var password = process.env.MY_MONGODB_PASSWORD;
 // mongoose.connect('mongodb://'+username+':'+password+'@localhost:27017/wbdv-su19', {useNewUrlParser: true});
-mongoose.connect('mongodb://localhost:27017/whiteboard-su19', {useNewUrlParser: true});
+// mongoose.connect('mongodb://localhost:27017/whiteboard-su19', {useNewUrlParser: true});
+
+
+require("./data/db")();//key point
 
 // Configure parsing JSON from body
 
@@ -26,24 +27,18 @@ app.use(function(req, res, next) {
    next();
 });
 
-var bookSchema = mongoose.Schema({
-   _id:String,
-   title:String,
-},{collection: 'book'})
+// var bookSchema = mongoose.Schema({
+//    _id:String,
+//    title:String,
+// },{collection: 'book'})
+//
+// var bookModel = mongoose.model('BookModel',bookSchema )
+//
+// bookModel.find().then(res => console.log(res))
 
-var bookModel = mongoose.model('BookModel',bookSchema )
-
-bookModel.find().then(res => console.log(res))
-
-var studentService = require('./services/student.service.server.js');
-studentService(app)
+var studentService = require('./services/student.service.server.js')(app);
 const questionService = require('./services/question.service.server.js')(app);
 const answerService = require('./services/answer.service.server.js')(app);
-
-
-var helloController = require('./controllers/HelloController.js')(app)
-
-
 console.log("server started")
 
 app.listen(process.env.PORT || 3000)
