@@ -1,5 +1,5 @@
 // var students = require('../data/students.json');
-var studentModel = require('../models/student/student.model.server');
+var studentModel = require('../data/models/student/student.model.server');
 
 function createStudent(newStudent) {
     return studentModel.create(newStudent)

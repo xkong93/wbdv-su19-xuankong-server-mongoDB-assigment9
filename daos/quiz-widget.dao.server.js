@@ -1,4 +1,4 @@
-var quizWidgetModel = require("../models/quiz-widget/quiz-widget.model.server")
+var quizWidgetModel = require("../data/models/quiz-widget/quiz-widget.model.server")
 
 function createQuizWidget(newQuizWidget) {
     return quizWidgetModel.create(newQuizWidget);

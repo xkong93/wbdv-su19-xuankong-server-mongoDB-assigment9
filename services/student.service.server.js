@@ -32,12 +32,14 @@ module.exports = function (app) {
         var studentId = req.params['sid'];
         var studentUpdates = req.body
         studentDao.updateStudent(studentId, studentUpdates)
+            .then(() => studentDao.findStudentById(studentId))
             .then(student => res.send(student));
     }
 
     function deleteStudent(req, res) {
         var studentId = req.params['sid'];
         studentDao.deleteStudent(studentId)
+            .then(() => studentDao.findAllStudents())
             .then(student => res.send(student));
     }
 

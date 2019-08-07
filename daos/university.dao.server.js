@@ -1,6 +1,6 @@
-var studentModel = require('../models/student/student.model.server');
-var questionModel = require("../models/question/question.model.server")
-var answerModel = require('../models/answer/answer.model.server')
+var studentModel = require('../data/models/student/student.model.server');
+var questionModel = require("../data/models/question/question.model.server")
+var answerModel = require('../data/models/answer/answer.model.server')
 
 
 function populateDatabase(students, questions, answers) {

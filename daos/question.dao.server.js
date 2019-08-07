@@ -1,5 +1,5 @@
 // var questions = require("../data/questions.json")
-var questionModel = require("../models/question/question.model.server")
+var questionModel = require("../data/models/question/question.model.server")
 
 function createQuestion(newQuesiton) {
     // const data = questions.find(quesiton => quesiton._id == newQuesiton._id)

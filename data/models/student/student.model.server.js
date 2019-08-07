@@ -1,5 +1,5 @@
 var mongoose = require('mongoose');
-var studentSchema = require('../student/student.schema.server.js')
+var studentSchema = require('./student.schema.server.js')
 
 var studentModel =
 	mongoose.model(

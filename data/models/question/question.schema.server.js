@@ -1,6 +1,6 @@
 const mongoose = require('mongoose')
-const TrueFalseSchema = require('../question/true-false.schema.server')
-const MultipleChoiceSchema = require('../question/multiple-choice.schema.server.js')
+const TrueFalseSchema = require('./true-false.schema.server')
+const MultipleChoiceSchema = require('./multiple-choice.schema.server.js')
 module.exports = mongoose.Schema({
  _id: Number,
  question: String,

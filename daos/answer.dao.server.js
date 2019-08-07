@@ -1,5 +1,5 @@
 // var answers = require('../data/answers.json');
-var answerModel = require('../models/answer/answer.model.server')
+var answerModel = require('../data/models/answer/answer.model.server')
 
 function answerQuestion(newAnswer) {
     // const data = answers.find(answer => answer._id == newAnswer._id)

@@ -20,7 +20,7 @@ module.exports = function (app) {
     }
 
     function findQuestionById(req, res) {
-       var pid = req.params['qid']
+        var pid = req.params['qid']
         questionsDao.findQuestionById(pid)
             .then(response => res.send(response))
     }
@@ -29,12 +29,14 @@ module.exports = function (app) {
         var questionId = req.params['qid'];
         var questionUpdates = req.body
         questionsDao.updateQuestion(questionId, questionUpdates)
+            .then(() => questionsDao.findQuestionById(questionId))
             .then(response => res.send(response))
     }
 
     function deleteQuestion(req, res) {
         var questionId = req.params['qid'];
         questionsDao.deleteQuestion(questionId)
+            .then(() => questionsDao.findAllQuestions())
             .then(response => res.send(response))
     }
 
