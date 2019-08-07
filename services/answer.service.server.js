@@ -8,38 +8,34 @@ module.exports = function (app) {
 
     function studentAnswersQuestion(req, res) {
         const answer = req.body;
-        const sid = req.params.sid;
-        const qid = req.params.qid;
-        answer['student'] = sid;
-        answer['question'] = qid;
-        // answer.student = sid;
-        // answer.question = qid;
-        const data = answersDao.answerQuestion(answer);
-		if (data === null){
-			res.status(409);
-			res.send('the answer already exists')
-		}else{
-			res.json(data);
-		}
+
+        answersDao.answerQuestion(answer)
+            .then(response => res.send(response))
     }
 
     function findAllAnswers(req, res) {
-        res.json(answersDao.findAllAnswers());
+        answersDao.findAllAnswers()
+            .then(response => res.send(response))
     }
 
     function findAnswerById(req, res) {
         const aid = req.params.aid;
-        res.json(answersDao.findAnswerById(aid))
+        answersDao.findAnswerById(aid)
+            .then(response => res.send(response))
     }
 
     function findAnswersByQuestionId(req, res) {
         const qid = req.params.qid;
-        res.json(answersDao.findAnswersByQuestionId(qid))
+        answersDao.findAnswersByQuestionId(qid)
+            .then(response => res.send(response))
+
     }
 
     function findAnswersByStudentId(req, res) {
         const sid = req.params.sid;
-        res.json(answersDao.findAnswersByStudentId(sid))
+        answersDao.findAnswersByStudentId(sid)
+            .then(response => res.send(response))
+
     }
 
     function findAnswersbyStudentForQuestion(req, res){
@@ -47,7 +43,9 @@ module.exports = function (app) {
         // const qid = req.params['qid'];
         const sid = req.params.sid;
         const qid = req.params.qid;
-        res.json(answersDao.findAnswersbyStudentForQuestion(sid,qid));
+        answersDao.findAnswersbyStudentForQuestion(sid,qid)
+            .then(response => res.send(response))
+
     }
 
     app.post('/api/student/:sid/question/:qid/answer', studentAnswersQuestion)
