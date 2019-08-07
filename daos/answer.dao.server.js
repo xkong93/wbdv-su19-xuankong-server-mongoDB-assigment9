@@ -13,11 +13,10 @@ function answerQuestion(newAnswer) {
 }
 
 function findAllAnswers() { //key point
-    return answerModel
-        .find()
-        .populate('student')
-        .populate('question')
-        .exec()
+    return answerModel.find()
+        // .populate('student')
+        // .populate('question')
+        // .exec()
 }
 
 function findAnswerById(answerId) {

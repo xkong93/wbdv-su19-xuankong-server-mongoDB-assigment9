@@ -7,7 +7,11 @@ var answersDao = require('../daos/answer.dao.server.js')
 module.exports = function (app) {
 
     function studentAnswersQuestion(req, res) {
+        const sid = req.params['sid']
+        const qid = req.params['qid']
         const answer = req.body;
+        answer['student'] = sid;
+        answer['question'] = qid;
 
         answersDao.answerQuestion(answer)
             .then(res => answersDao.findAllAnswers())

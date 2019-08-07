@@ -31,6 +31,7 @@ app.use(function(req, res, next) {
 var studentService = require('./services/student.service.server.js')(app);
 const questionService = require('./services/question.service.server.js')(app);
 const answerService = require('./services/answer.service.server.js')(app);
+const universityService = require('./services/university.service.server')(app);
 console.log("server started")
 
 app.listen(process.env.PORT || 3000)
