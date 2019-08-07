@@ -10,6 +10,7 @@ module.exports = function (app) {
         const answer = req.body;
 
         answersDao.answerQuestion(answer)
+            .then(res => answersDao.findAllAnswers())
             .then(response => res.send(response))
     }
 

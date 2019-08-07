@@ -1,12 +1,11 @@
 var quizWidgetDao = require('../daos/quiz-widget.dao.server')
 
 module.exports = function (app) {
-
     function createQuizWidget(req, res) {
         const quizWidget = req.body;
         quizWidgetDao.createQuizWidget(quizWidget)
+            .then(res => quizWidgetDao.findAllQuizWidgets())
             .then(response => res.send(response))
-
     }
 
     function addQuestionToQuizWidget(req, res) {

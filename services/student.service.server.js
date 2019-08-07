@@ -5,9 +5,9 @@ module.exports = function (app) {
     function createStudent(req, res) {
         console.log('createStudent')
         var student = req.body
-        console.log(student)
         studentDao
             .createStudent(student)
+            .then(res => studentDao.findAllStudents())
             .then(response => res.send(response))
     }
 

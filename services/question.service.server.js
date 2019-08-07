@@ -9,6 +9,7 @@ module.exports = function (app) {
     function createQuestion(req, res) {
         const question = req.body;
         questionsDao.createQuestion(question)
+            .then(res => questionsDao.findAllQuestions())
             .then(response => res.send(response))
 
     }
